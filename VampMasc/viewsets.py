@@ -3,9 +3,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
-from VampMasc.models import Campaign, Discipline, Character, Predator, Flaw, Advantage
+from VampMasc.models import Campaign, Discipline, Character, Predator, Flaw, Advantage, AppUser
 from VampMasc.serializers import CampaignSerializer, DisciplineSerializer, CharacterSerializer, PredatorSerializer, \
-    FlawSerializer, AdvantageSerializer
+    FlawSerializer, AdvantageSerializer, UserSerializer
+
+
+class AppUserViewSet(ReadOnlyModelViewSet):
+    queryset = AppUser.objects.all()
+    serializer_class = UserSerializer
 
 
 class CampaignViewSet(ModelViewSet):
