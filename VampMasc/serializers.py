@@ -7,10 +7,10 @@ from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializ
 from VampMasc.models import Campaign, Discipline, Advantage, Flaw, Predator, Clan, DisciplineCharacter, Character
 
 
-class UserSerializer(HyperlinkedModelSerializer):
+class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        fields = ['username', 'email']
 
 
 class CampaignSerializer(ModelSerializer):

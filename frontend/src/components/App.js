@@ -1,13 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import DataProvider from "./DataProvider";
-import Table from "./Table";
+import React from 'react'
+import Header from './Header'
+import Main from './Main'
 
 const App = () => (
-  <DataProvider endpoint="api/user/"
-                render={data => <Table data={data} />} />
-);
+  <div>
+    <Header />
+    <Main />
+  </div>
+)
 
-const wrapper = document.getElementById("app");
-
-wrapper ? ReactDOM.render(<App />, wrapper) : null;
+export default App

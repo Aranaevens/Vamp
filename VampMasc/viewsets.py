@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -9,7 +10,7 @@ from VampMasc.serializers import CampaignSerializer, DisciplineSerializer, Chara
 
 
 class AppUserViewSet(ReadOnlyModelViewSet):
-    queryset = AppUser.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 

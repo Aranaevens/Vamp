@@ -1,3 +1,4 @@
+from django.urls import include
 from rest_framework import routers
 
 from VampMasc.viewsets import CampaignViewSet, DisciplineViewSet, AdvantageViewSet, FlawViewSet, PredatorViewSet, \
