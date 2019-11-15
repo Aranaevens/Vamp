@@ -1,4 +1,4 @@
-"""Vamp URL Configuration
+"""rp_shop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -17,9 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 
-from Vamp.routers import router
-from VampMasc import views
-from VampMasc.views import ConfirmEmailView
+from rp_shop.routers import router
+from shop import views
+from shop.views import ConfirmEmailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -2,7 +2,9 @@ import App from "./components/App";
 import {BrowserRouter} from "react-router-dom";
 import { render } from 'react-dom'
 import React from "react";
-import ReactDOM from 'react-dom';
+import 'antd/dist/antd.less'
+import '../static/frontend/site.css';
+
 
 render((
   <BrowserRouter>

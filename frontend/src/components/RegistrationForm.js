@@ -9,7 +9,7 @@ import {
     Button,
 } from 'antd';
 import React from "react";
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import axios from "axios";
 import CSRFToken from "./csrftoken";
 import Cookies from 'js-cookie';

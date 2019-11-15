@@ -1,9 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import axios from "axios";
 import Cookies from "js-cookie";
-import {Modal} from 'antd'
+import {Modal, Icon} from 'antd'
 import LoginForm from "./LoginForm";
+import SearchForm from "./Search";
 
 // The Header creates links that can be used to navigate
 // between routes.
@@ -27,8 +28,8 @@ class Header extends React.Component {
                     'Content-Type': 'application/json',
                 },
                 withCredentials: true,
-            }).then(function (response){
-                console.log(response);
+            }).then(function (response) {
+            console.log(response);
         });
         this.props.logoutHandler();
     };
@@ -46,21 +47,52 @@ class Header extends React.Component {
         });
     };
 
+    dontDoThing = e => {
+        e.preventDefault();
+    };
+
     render() {
         return (
             <header>
                 <nav>
-                    <ul>
-                        <li><Link to='/'>Home</Link></li>
-                        {(this.props.logged) ?
-                            null
-                            : <li><Link to='/register'>Register</Link></li>
-                        }
-                        {(this.props.logged) ?
-                            <li><Link to='/logout' onClick={this.handleLogout}>Logout</Link></li>
-                            : <li><Link to='/login' onClick={this.showLogin}>Login</Link></li>
-                        }
-                    </ul>
+                    <div className="nav-wrapper">
+                        <ul className="ant-menu ant-menu-horizontal ant-menu-root">
+                            <NavLink exact to='/' activeClassName="ant-menu-item-selected"
+                                     className="ant-menu-item">
+                                Home
+                            </NavLink>
+                            <NavLink to='/blog' activeClassName="ant-menu-item-selected" className="ant-menu-item">
+                                Articles
+                            </NavLink>
+                            <NavLink to='/shop' activeClassName="ant-menu-item-selected" className="ant-menu-item">
+                                Shop
+                            </NavLink>
+                        </ul>
+                        <NavLink to='/' className="icon-header">
+                            <img src='../../static/frontend/dice.png' alt='site icon' />
+                        </NavLink>
+                        <ul className="ant-menu ant-menu-horizontal ant-menu-root">
+                            <NavLink to='/search' activeClassName="ant-menu-item-selected" className="ant-menu-item" onClick={this.dontDoThing}>
+                                <SearchForm />
+                            </NavLink>
+                            <NavLink to='/cart' activeClassName="ant-menu-item-selected" className="ant-menu-item">
+                                <Icon type="shopping-cart" style={{fontSize: 1.5 + 'em'}}/>
+                            </NavLink>
+                            {(this.props.logged) ?
+                                null
+                                : <NavLink to='/register' activeClassName="ant-menu-item-selected"
+                                           className="ant-menu-item">Register</NavLink>
+                            }
+                            {(this.props.logged) ?
+                                <NavLink to='/logout' onClick={this.handleLogout}
+                                         activeClassName="ant-menu-item-selected"
+                                         className="ant-menu-item">Logout</NavLink>
+                                : <NavLink to='/login' onClick={this.showLogin} activeClassName="ant-menu-item-selected"
+                                           className="ant-menu-item">Login</NavLink>
+                            }
+                        </ul>
+
+                    </div>
                 </nav>
                 <Modal
                     title="Login form"
@@ -68,7 +100,7 @@ class Header extends React.Component {
                     visible={this.state.loginVisible}
                     onCancel={this.onLoginModalCancel}
                 >
-                    <LoginForm loginHandler={this.props.loginHandler} onLoginModalCancel={this.onLoginModalCancel} />
+                    <LoginForm loginHandler={this.props.loginHandler} onLoginModalCancel={this.onLoginModalCancel}/>
                 </Modal>
             </header>
 

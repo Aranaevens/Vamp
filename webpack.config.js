@@ -18,9 +18,12 @@ module.exports = {
                     loader: 'less-loader', // compiles Less to CSS
                     options: {
                         modifyVars: {
-                            'primary-color': '#1DA57A',
-                            'link-color': '#1DA57A',
+                            'primary-color': '#114006',
+                            'link-color': '#114006',
+                            'body-background': '#cccccc',
+                            'component-background': '#cccccc',
                             'border-radius-base': '2px',
+                            // 'hack': `true; @import "frontend/static/frontend/antstyle.less";`,
                         },
                         javascriptEnabled: true,
                     },

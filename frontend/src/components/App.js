@@ -9,9 +9,10 @@ class App extends React.Component{
         this.state = {};
         this.logoutHandler = this.logoutHandler.bind(this);
         this.loginHandler = this.loginHandler.bind(this);
+        console.log(this.props.location)
     };
 
-    componentWillMount() {
+    componentDidMount() {
         if (sessionStorage.getItem('auth_token') != null || localStorage.getItem('auth_token') != null)
         {
             this.setState({logged: true})

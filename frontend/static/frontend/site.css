@@ -1,3 +1,8 @@
+main {
+  margin-right: 15%;
+  margin-left: 15%;
+}
+
 .login-form {
   max-width: 300px;
 }
@@ -12,4 +17,23 @@
 }
 .login-form-button {
   width: 100%;
+}
+
+.search-form>.ant-input {
+  border: 0 solid;
+}
+
+.nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#breadcrumb {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.icon-header>img {
+  max-height: 46px;
 }

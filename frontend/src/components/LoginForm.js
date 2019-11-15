@@ -2,7 +2,6 @@ import {Form, Icon, Input, Button, Checkbox} from 'antd';
 import React from 'react'
 import axios from "axios";
 import Cookies from "js-cookie";
-import '../../static/frontend/site.css';
 import key from "weak-key";
 
 class LoginForm extends React.Component {
@@ -14,7 +13,7 @@ class LoginForm extends React.Component {
             if (!err) {
                 axios.post('/api/auth/login/',
                     {
-                        username: values['username'],
+                        email: values['email'],
                         password: values['password'],
                     },
                     {
@@ -55,12 +54,12 @@ class LoginForm extends React.Component {
         return (
             <Form onSubmit={this.handleSubmit} loginHandler={this.props.loginHandler} onLoginModalCancel={this.onLoginModalCancel} className="login-form">
                 <Form.Item>
-                    {getFieldDecorator('username', {
-                        rules: [{required: true, message: 'Please input your username!'}],
+                    {getFieldDecorator('email', {
+                        rules: [{required: true, message: 'Please input your email!'}],
                     })(
                         <Input
                             prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
-                            placeholder="Username"
+                            placeholder="Email adress"
                         />,
                     )}
                 </Form.Item>
