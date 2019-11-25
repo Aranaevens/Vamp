@@ -5,6 +5,8 @@ import RegistrationForm from './RegistrationForm'
 import NoUrlMatch from "./NoUrlMatch";
 import LoginForm from "./LoginForm";
 import MyBreadCrumb from "./Breadcrumb";
+import ProductList from "./ProductList";
+import CartOverview from "./CartOverview";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -26,9 +28,10 @@ const Main = () => (
         <MyBreadCrumb NameMap={BreadCrumbMap}/>
         <Switch>
             <Route exact path='/' component={Home}/>
-            <Route path='register' component={RegistrationForm}/>
-
-            <Route path='login' component={LoginForm}/>
+            <Route path='/register' component={RegistrationForm}/>
+            <Route exact path='/shop' component={ProductList}/>
+            <Route path='/login' component={LoginForm}/>
+            <Route path='/cart' component={CartOverview}/>
             <Route path='*' component={NoUrlMatch}/>
         </Switch>
     </main>

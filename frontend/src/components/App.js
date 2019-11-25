@@ -9,7 +9,6 @@ class App extends React.Component{
         this.state = {};
         this.logoutHandler = this.logoutHandler.bind(this);
         this.loginHandler = this.loginHandler.bind(this);
-        console.log(this.props.location)
     };
 
     componentDidMount() {
@@ -20,6 +19,7 @@ class App extends React.Component{
         else{
             this.setState({logged: false})
         }
+        sessionStorage.setItem('cart', '[]');
     };
 
     logoutHandler(){

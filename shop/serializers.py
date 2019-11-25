@@ -34,7 +34,8 @@ class TagSerializer(ModelSerializer):
 
 
 class GameSerializer(ModelSerializer):
-    designer = DesignerSerializer(many=False, allow_null=True, read_only=True)
+    designer = ReadOnlyField(source='designer.name')
+    # designer = DesignerSerializer(many=False, allow_null=True, read_only=True)
     tags = TagSerializer(many=True, allow_null=True, read_only=True)
 
     class Meta:
@@ -55,7 +56,8 @@ class BookDetailSerializer(ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'edited_at', 'cover', 'game', 'summary']
+        fields = ['id', 'title', 'edited_at', 'cover', 'game', 'summary', 'price', 'rating']
+        read_only_fields = ['rating']
 
 
 class BookListSerializer(ModelSerializer):
@@ -65,7 +67,7 @@ class BookListSerializer(ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'edited_at', 'cover', 'game', 'tags', 'game_id', 'rating']
+        fields = ['id', 'title', 'edited_at', 'cover', 'game', 'tags', 'game_id', 'rating', 'price']
         read_only_fields = ['rating']
 
 

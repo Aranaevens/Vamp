@@ -37,3 +37,47 @@ main {
 .icon-header>img {
   max-height: 46px;
 }
+
+.price-card {
+  text-align: right;
+  font-size: 1.2em;
+}
+
+.rating-lower-size>li {
+  max-height: 70%;
+}
+
+.product-list-img {
+  height: 30vh;
+  object-fit: contain;
+}
+
+.price-total {
+  text-align: right;
+  font-size: 1.05em;
+}
+
+.price-total>p {
+  margin-bottom: 0.3em;
+}
+
+.cart-manipulation-btn-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-save-btn{
+  width: 10em;
+  height: 0.8em;
+  margin-left: auto;
+}
+
+.cart-empty-btn{
+  /*width: 0.8em;*/
+  /*height: 0.8em;*/
+}
+
+.cart-checkout-btn{
+  width: 12.5em;
+  height: 1em;
+}

@@ -14,8 +14,6 @@ class MyBreadCrumb extends React.Component {
                 const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
                 const first_member = `${pathSnippets.slice(0, 1)}`;
                 const last_member = `${pathSnippets.slice(index, index + 1)}`;
-                console.log(last_member);
-                console.log(isNaN(last_member));
                     if(isNaN(last_member)) {
                         return (
                             <Breadcrumb.Item key={url}>

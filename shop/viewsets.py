@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db.models import Avg
 from rest_framework import status, viewsets, mixins
+from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -15,11 +16,13 @@ class UserViewSet(ReadOnlyModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
-    @action(detail=True, methods=['get'])
-    def get_wishlist(self, request, pk=None):
+    @action(detail=True, methods=['get'], url_path='(?P<bid>\d+)')
+    def is_a_wish(self, request, pk=None, bid=None):
         user = self.get_object()
-        serializer = BookListSerializer(user.wishes)
-        return Response(serializer.data)
+        if user.wishes.all().filter(pk=bid).exists():
+            return Response(data={'message':True})
+        else:
+            return Response(data={'message':False})
 
 
 class DesignerViewSet(ReadOnlyModelViewSet):
@@ -53,6 +56,14 @@ class BookViewSet(ReadOnlyModelViewSet):
             return BookListSerializer
         else:
             return BookDetailSerializer
+
+    @action(detail=True, methods=['get'])
+    def is_a_wish(self, request, pk=None):
+        user = request.user
+        if user.wishes.all().filter(pk=pk).exists():
+            return Response(data={'message':True})
+        else:
+            return Response(data={'message':False})
 
 
 class OrderViewSet( mixins.RetrieveModelMixin,

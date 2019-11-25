@@ -73,6 +73,7 @@ class Book(Model):
     highlight = BooleanField(default=False)
     summary = TextField("Summary", blank=True)
     game = ForeignKey(Game, on_delete=CASCADE, verbose_name="Game", related_name="books")
+    price = IntegerField(default=50)
 
     def rating(self):
         return self.comments.aggregate(Avg('rating'))['rating_avg']

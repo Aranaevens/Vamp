@@ -50,7 +50,7 @@ class LoginForm extends React.Component {
                     offset: 6,
                 }
             }
-        }
+        };
         return (
             <Form onSubmit={this.handleSubmit} loginHandler={this.props.loginHandler} onLoginModalCancel={this.onLoginModalCancel} className="login-form">
                 <Form.Item>
