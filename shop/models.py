@@ -133,6 +133,3 @@ class OrdBook(Model):
     ord = ForeignKey(Order, on_delete=CASCADE)
     book = ForeignKey(Book, on_delete=CASCADE)
 
-    qte = IntegerField("Quantité", default=1)
-
-

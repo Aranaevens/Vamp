@@ -52,6 +52,11 @@ class ProductCard extends React.Component {
                     console.log(error);
                 });
         }
+        else {
+            self.setState({
+                loaded: true
+            });
+        }
     }
 
     handleCartClick = e => {
@@ -65,15 +70,69 @@ class ProductCard extends React.Component {
     };
 
     handleRemoveWish = () => {
-        this.setState({
-            isWishlisted: false
-        })
+        // this.setState({
+        //     isWishlisted: false
+        // });
+        let token = null;
+        const id = this.props.id;
+        if (localStorage.getItem('auth_token')) {
+            token = localStorage.getItem('auth_token');
+        } else if (sessionStorage.getItem('auth_token')) {
+            token = sessionStorage.getItem('auth_token')
+        }
+        if (token) {
+            axios.get('/api/book/' + id + '/remove_a_wish/', {
+                    headers:
+                        {
+                            'Content-Type': 'application/json',
+                            'Authentication': 'Token' + token
+                        }
+                }
+            )
+                .then(function (response) {
+                    if (response['data']['message'] === true) {
+                        self.setState({
+                            isWishlisted: false
+                        })
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
     };
 
     handleAddWish = () => {
-        this.setState({
-            isWishlisted: true
-        })
+        // this.setState({
+        //     isWishlisted: true
+        // });
+        let token = null;
+        const id = this.props.id;
+        if (localStorage.getItem('auth_token')) {
+            token = localStorage.getItem('auth_token');
+        } else if (sessionStorage.getItem('auth_token')) {
+            token = sessionStorage.getItem('auth_token')
+        }
+        if (token) {
+            axios.get('/api/book/' + id + '/make_a_wish/', {
+                    headers:
+                        {
+                            'Content-Type': 'application/json',
+                            'Authentication': 'Token' + token
+                        }
+                }
+            )
+                .then(function (response) {
+                    if (response['data']['message'] === true) {
+                        self.setState({
+                            isWishlisted: true
+                        })
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
     };
 
 

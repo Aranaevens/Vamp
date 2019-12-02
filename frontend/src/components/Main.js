@@ -7,6 +7,7 @@ import LoginForm from "./LoginForm";
 import MyBreadCrumb from "./Breadcrumb";
 import ProductList from "./ProductList";
 import CartOverview from "./CartOverview";
+import ProductDetail from "./ProductDetail";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -32,6 +33,7 @@ const Main = () => (
             <Route exact path='/shop' component={ProductList}/>
             <Route path='/login' component={LoginForm}/>
             <Route path='/cart' component={CartOverview}/>
+            <Route path='/book/:id' component={ProductDetail}/>
             <Route path='*' component={NoUrlMatch}/>
         </Switch>
     </main>

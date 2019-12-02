@@ -19,12 +19,13 @@ class App extends React.Component{
         else{
             this.setState({logged: false})
         }
+        // TODO Change that to get saved cart
         sessionStorage.setItem('cart', '[]');
     };
 
     logoutHandler(){
-        sessionStorage.clear();
-        localStorage.clear();
+        sessionStorage.removeItem('auth_token');
+        localStorage.removeItem('auth_token');
         this.setState({logged: false})
     };
 

@@ -16,13 +16,6 @@ class UserViewSet(ReadOnlyModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
-    @action(detail=True, methods=['get'], url_path='(?P<bid>\d+)')
-    def is_a_wish(self, request, pk=None, bid=None):
-        user = self.get_object()
-        if user.wishes.all().filter(pk=bid).exists():
-            return Response(data={'message':True})
-        else:
-            return Response(data={'message':False})
 
 
 class DesignerViewSet(ReadOnlyModelViewSet):
@@ -61,6 +54,28 @@ class BookViewSet(ReadOnlyModelViewSet):
     def is_a_wish(self, request, pk=None):
         user = request.user
         if user.wishes.all().filter(pk=pk).exists():
+            return Response(data={'message':True})
+        else:
+            return Response(data={'message':False})
+
+    @action(detail=True, methods=['get'])
+    def make_a_wish(self, request, pk=None):
+        user = request.user
+        book = self.get_object()
+        if book:
+            user.wishes.add(book)
+            user.save()
+            return Response(data={'message':True})
+        else:
+            return Response(data={'message':False})
+
+    @action(detail=True, methods=['get'])
+    def remove_a_wish(self, request, pk=None):
+        user = request.user
+        book = self.get_object()
+        if user.wishes.all().filter(pk=pk).exists():
+            user.wishes.remove(book)
+            user.save()
             return Response(data={'message':True})
         else:
             return Response(data={'message':False})
