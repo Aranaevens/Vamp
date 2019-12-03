@@ -83,16 +83,14 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'wishes']
+        fields = ['id', 'email', 'wishes']
 
 
 class CommentSerializer(ModelSerializer):
-    user = UserSerializer(many=False, allow_null=False, read_only=True)
-    book = BookDetailSerializer(many=False, allow_null=False, read_only=True)
 
     class Meta:
         model = CommentBook
-        fields = ['content', 'created_at', 'rating', 'upvotes']
+        fields = ['content', 'created_at', 'rating', 'upvotes', 'user', 'book']
 
 
 class OrdBookSerializer(ModelSerializer):

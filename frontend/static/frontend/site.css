@@ -1,6 +1,10 @@
 main {
-  margin-right: 15%;
-  margin-left: 15%;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+body{
+  height: auto !important;
 }
 
 .login-form {
@@ -80,4 +84,54 @@ main {
 .cart-checkout-btn{
   width: 12.5em;
   height: 1em;
+}
+
+.details-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.details-main-section{
+  width: 70%;
+  margin-right: 2.5%;
+}
+
+.details-main-wrapper{
+  display: flex;
+  flex-direction: row;
+}
+
+.details-cover{
+  width: 40%;
+  margin-right: 7.5%;
+}
+
+.details-cover>img{
+  object-fit: contain;
+}
+
+.details-title{
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.details-infos{
+  margin-top: 10em;
+}
+
+.details-aside{
+  margin-top: 15vh;
+}
+
+.details-btn{
+  width: 7em;
+  padding: 0.3em;
+  border: black 1px solid;
+  text-align: center;
+  margin-bottom: 0.6em;
+  font-size: 2em;
+}
+
+.details-price{
+  font-size: 3em;
 }

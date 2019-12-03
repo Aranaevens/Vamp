@@ -75,6 +75,7 @@ class ProductCard extends React.Component {
         // });
         let token = null;
         const id = this.props.id;
+        let self = this;
         if (localStorage.getItem('auth_token')) {
             token = localStorage.getItem('auth_token');
         } else if (sessionStorage.getItem('auth_token')) {
@@ -108,6 +109,7 @@ class ProductCard extends React.Component {
         // });
         let token = null;
         const id = this.props.id;
+        let self = this;
         if (localStorage.getItem('auth_token')) {
             token = localStorage.getItem('auth_token');
         } else if (sessionStorage.getItem('auth_token')) {

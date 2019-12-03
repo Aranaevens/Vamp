@@ -33,7 +33,7 @@ const Main = () => (
             <Route exact path='/shop' component={ProductList}/>
             <Route path='/login' component={LoginForm}/>
             <Route path='/cart' component={CartOverview}/>
-            <Route path='/book/:id' component={ProductDetail}/>
+            <Route path='/shop/details/:id' component={ProductDetail}/>
             <Route path='*' component={NoUrlMatch}/>
         </Switch>
     </main>
