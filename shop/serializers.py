@@ -88,9 +88,11 @@ class UserSerializer(ModelSerializer):
 
 class CommentSerializer(ModelSerializer):
 
+    username = ReadOnlyField(source='user.email')
+
     class Meta:
         model = CommentBook
-        fields = ['content', 'created_at', 'rating', 'upvotes', 'user', 'book']
+        fields = ['content', 'created_at', 'rating', 'upvotes', 'username', 'book', 'user']
 
 
 class OrdBookSerializer(ModelSerializer):

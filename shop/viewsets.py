@@ -47,6 +47,8 @@ class BookViewSet(ReadOnlyModelViewSet):
     def get_serializer_class(self):
         if self.action == 'list':
             return BookListSerializer
+        elif self.action == 'post_comment':
+            return CommentSerializer
         else:
             return BookDetailSerializer
 
@@ -79,6 +81,27 @@ class BookViewSet(ReadOnlyModelViewSet):
             return Response(data={'message':True})
         else:
             return Response(data={'message':False})
+
+    @action(detail=True, methods=['get'])
+    def load_comments(self, request, pk=None):
+        book = self.get_object()
+        queryset = CommentBook.objects.filter(book=book.pk)
+        serializer = CommentSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'])
+    def post_comment(self, request, pk=None):
+        book = self.get_object()
+        user = request.user
+        complete_data = request.data
+        complete_data['user'] = user.pk
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            comment = serializer.save()
+            book.comments.add(comment)
+            return Response(data={'message':True})
+        else:
+            return Response(data={'message':"Wrong data input"})
 
 
 class OrderViewSet( mixins.RetrieveModelMixin,

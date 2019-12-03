@@ -26,11 +26,11 @@ class LoginForm extends React.Component {
                     .then(function (response) {
                         if (values['remember']){
                             localStorage.setItem('auth_token', response['data']['key']);
-                            console.log(response['data']['key']);
+                            localStorage.setItem('email', values['email']);
                         }
                         else{
                             sessionStorage.setItem('auth_token', response['data']['key']);
-                            console.log(response['data']['key']);
+                            sessionStorage.setItem('email', values['email']);
                         }
                         itself.props.loginHandler();
                         itself.props.onLoginModalCancel();

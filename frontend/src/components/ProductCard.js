@@ -70,9 +70,6 @@ class ProductCard extends React.Component {
     };
 
     handleRemoveWish = () => {
-        // this.setState({
-        //     isWishlisted: false
-        // });
         let token = null;
         const id = this.props.id;
         let self = this;
@@ -104,9 +101,6 @@ class ProductCard extends React.Component {
     };
 
     handleAddWish = () => {
-        // this.setState({
-        //     isWishlisted: true
-        // });
         let token = null;
         const id = this.props.id;
         let self = this;
