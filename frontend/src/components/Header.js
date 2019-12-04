@@ -57,13 +57,6 @@ class Header extends React.Component {
                 <nav>
                     <div className="nav-wrapper">
                         <ul className="ant-menu ant-menu-horizontal ant-menu-root">
-                            <NavLink exact to='/' activeClassName="ant-menu-item-selected"
-                                     className="ant-menu-item">
-                                Home
-                            </NavLink>
-                            <NavLink to='/blog' activeClassName="ant-menu-item-selected" className="ant-menu-item">
-                                Articles
-                            </NavLink>
                             <NavLink to='/shop' activeClassName="ant-menu-item-selected" className="ant-menu-item">
                                 Shop
                             </NavLink>

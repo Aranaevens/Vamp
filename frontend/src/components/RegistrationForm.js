@@ -137,20 +137,20 @@ class RegistrationForm extends React.Component {
                         ],
                     })(<Input.Password onBlur={this.handleConfirmBlur}/>)}
                 </Form.Item>
-                <Form.Item
-                    label={
-                        <span>
-              Nickname&nbsp;
-                            <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o"/>
-              </Tooltip>
-            </span>
-                    }
-                >
-                    {getFieldDecorator('username', {
-                        rules: [{required: true, message: 'Please input your nickname!', whitespace: true}],
-                    })(<Input/>)}
-                </Form.Item>
+            {/*    <Form.Item*/}
+            {/*        label={*/}
+            {/*            <span>*/}
+            {/*  Nickname&nbsp;*/}
+            {/*                <Tooltip title="What do you want others to call you?">*/}
+            {/*    <Icon type="question-circle-o"/>*/}
+            {/*  </Tooltip>*/}
+            {/*</span>*/}
+            {/*        }*/}
+            {/*    >*/}
+            {/*        {getFieldDecorator('username', {*/}
+            {/*            rules: [{required: true, message: 'Please input your nickname!', whitespace: true}],*/}
+            {/*        })(<Input/>)}*/}
+            {/*    </Form.Item>*/}
                 <Form.Item label="Captcha" extra="We must make sure that your are a human.">
                     <Row gutter={8}>
                         <Col span={12}>

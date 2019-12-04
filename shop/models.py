@@ -120,6 +120,7 @@ class OrderStatus(enum.Enum):
 
 class Order(Model):
     num_cmd = CharField(max_length=12)
+    email_contact = EmailField('contact', unique=False, null=True)
     made_at = DateTimeField("Orderer", auto_now=True)
     name = CharField(max_length=155)
     address = CharField(max_length=255)

@@ -155,7 +155,7 @@ class ProductCard extends React.Component {
                 cover={<img alt="book cover" src={this.state.cover_url} className="product-list-img"/>}
                 actions={actions}
             >
-                <Meta title={this.props.title}
+                <Meta title={<a href={"/shop/details/" + this.props.id}>{this.props.title}</a>}
                       description={<ProductCardDescription editedAt={this.props.editedAt} price={this.props.price}
                                                            rating={this.props.rating}/>}/>
             </Card>

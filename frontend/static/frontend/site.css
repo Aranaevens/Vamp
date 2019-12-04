@@ -136,3 +136,9 @@ body{
 .details-price{
   font-size: 3em;
 }
+
+.ant-drawer-body .ant-input{
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}

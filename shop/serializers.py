@@ -92,7 +92,7 @@ class CommentSerializer(ModelSerializer):
 
     class Meta:
         model = CommentBook
-        fields = ['content', 'created_at', 'rating', 'upvotes', 'username', 'book', 'user']
+        fields = ['content', 'created_at', 'rating', 'username', 'book', 'user']
 
 
 class OrdBookSerializer(ModelSerializer):
@@ -109,5 +109,6 @@ class OrderSerializer(ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['num_cmd', 'made_at', 'name', 'address', 'zip', 'status', 'user', 'books']
+        fields = ['num_cmd', 'made_at', 'name', 'address', 'zip', 'status', 'user', 'books', 'email_contact']
+        read_only_fields = ['status', 'num_cmd']
 

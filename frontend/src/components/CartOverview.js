@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import {Avatar, Button, Icon, List, notification, message, Popconfirm} from "antd";
+import CommandDrawer from "./CommandDrawer";
 
 class CartOverview extends React.Component {
 
@@ -73,7 +74,7 @@ class CartOverview extends React.Component {
         this.setState({
             cart: []
         });
-        sessionStorage.setItem('cart', []);
+        sessionStorage.setItem('cart', '[]');
         message.success("Cart successfully emptied.")
     };
 
@@ -141,16 +142,7 @@ class CartOverview extends React.Component {
                             />
                         </Popconfirm>
                     </div>
-                    <div className="cart-checkout-btn">
-                        <Button
-                            block
-                            onClick={this.handleValidate}
-                            shape="round"
-                            icon="euro"
-                            type="primary"
-                        >Place the order
-                        </Button>
-                    </div>
+                    <CommandDrawer />
                 </div>
             </div>
         )

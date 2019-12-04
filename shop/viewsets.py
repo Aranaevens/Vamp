@@ -1,3 +1,6 @@
+import json
+from random import randrange
+
 from django.contrib.auth.models import User
 from django.db.models import Avg
 from rest_framework import status, viewsets, mixins
@@ -98,6 +101,7 @@ class BookViewSet(ReadOnlyModelViewSet):
         serializer = CommentSerializer(data=request.data)
         if serializer.is_valid():
             comment = serializer.save()
+            comment.user = user
             book.comments.add(comment)
             return Response(data={'message':True})
         else:
@@ -110,6 +114,35 @@ class OrderViewSet( mixins.RetrieveModelMixin,
                     viewsets.GenericViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+    @action(detail=False, methods=['post'])
+    def place_order(self, request):
+        user = None
+        if request.user:
+            user = request.user
+        serializer = OrderSerializer(data=request.data)
+        num = randrange(10000)
+        while True:
+            try:
+                flag = Order.objects.get(num_cmd=num)
+            except Order.DoesNotExist:
+                flag = None
+            if flag is None:
+                break
+            else:
+                num = randrange(10000)
+        if serializer.is_valid():
+            order = serializer.save()
+            order.num_cmd = num
+            order.user_from = user if user else None
+            items = json.loads(request.data["items"])
+            for item in items:
+                to_add = Book.objects.get(pk=item)
+                order.items.add(to_add)
+            order.save()
+            return Response(data={'message':True})
+        else:
+            return Response(data={'message':"Wrong data input"})
 
 
 class CommentViewSet(ModelViewSet):
