@@ -19,7 +19,10 @@ class App extends React.Component{
         else{
             this.setState({logged: false})
         }
-        if (localStorage.getItem('cart') != null) {
+        if (sessionStorage.getItem('cart') != null) {
+            sessionStorage.setItem('cart', sessionStorage.getItem('cart'));
+        }
+        else if (localStorage.getItem('cart') != null) {
             sessionStorage.setItem('cart', localStorage.getItem('cart'));
         }
         else {

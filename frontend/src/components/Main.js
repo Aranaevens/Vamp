@@ -8,6 +8,8 @@ import MyBreadCrumb from "./Breadcrumb";
 import ProductList from "./ProductList";
 import CartOverview from "./CartOverview";
 import ProductDetail from "./ProductDetail";
+import SearchForm from "./Search";
+import SearchResults from "./SearchResults";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -22,6 +24,7 @@ const BreadCrumbMap = {
     '/blog': 'Blog',
     '/blog/details': 'Article',
     '/cart': 'Cart',
+    '/search': 'Search',
 };
 
 const Main = () => (
@@ -34,6 +37,8 @@ const Main = () => (
             <Route path='/login' component={LoginForm}/>
             <Route path='/cart' component={CartOverview}/>
             <Route path='/shop/details/:id' component={ProductDetail}/>
+            <Route exact path='/search' component={SearchForm}/>
+            <Route path='/search/:kw' component={SearchResults}/>
             <Route path='*' component={NoUrlMatch}/>
         </Switch>
     </main>

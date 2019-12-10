@@ -2,7 +2,7 @@ import json
 from random import randrange
 
 from django.contrib.auth.models import User
-from django.db.models import Avg
+from django.db.models import Avg, Q
 from rest_framework import status, viewsets, mixins
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
@@ -12,7 +12,7 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 from shop.models import Designer, CustomUser, Tag, Game, Article, Book, CommentBook, Order
 from shop.serializers import UserSerializer, TagSerializer, DesignerSerializer, GameSerializer, ArticleSerializer, \
-    BookDetailSerializer, CommentSerializer, OrderSerializer, BookListSerializer
+    BookDetailSerializer, CommentSerializer, OrderSerializer, BookListSerializer, BookListNoRatingSerializer
 
 
 class UserViewSet(ReadOnlyModelViewSet):
@@ -45,7 +45,12 @@ class BookViewSet(ReadOnlyModelViewSet):
     queryset = Book.objects.all()
 
     def get_queryset(self):
-        return self.queryset.annotate(rating=Avg('comments__rating'))
+        if self.action == 'search':
+            kw = self.request.query_params.get('kw')
+            queryset = Book.objects.filter(title__icontains=kw)
+            return queryset.annotate(rating=Avg('comments__rating'))
+        else:
+            return self.queryset.annotate(rating=Avg('comments__rating'))
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -63,6 +68,12 @@ class BookViewSet(ReadOnlyModelViewSet):
         else:
             return Response(data={'message':False})
 
+    @action(detail=False, methods=['get'])
+    def get_highlighted(self, request):
+        queryset = Book.objects.filter(highlight=True)
+        serializer = BookListNoRatingSerializer(queryset, many=True)
+        return Response(data=serializer.data)
+
     @action(detail=True, methods=['get'])
     def make_a_wish(self, request, pk=None):
         user = request.user
@@ -73,6 +84,11 @@ class BookViewSet(ReadOnlyModelViewSet):
             return Response(data={'message':True})
         else:
             return Response(data={'message':False})
+
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        serializer = BookListSerializer(self.get_queryset(), many=True)
+        return Response(data=serializer.data)
 
     @action(detail=True, methods=['get'])
     def remove_a_wish(self, request, pk=None):

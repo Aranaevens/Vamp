@@ -65,8 +65,9 @@ class Header extends React.Component {
                             <img src='../../static/frontend/dice.png' alt='site icon' />
                         </NavLink>
                         <ul className="ant-menu ant-menu-horizontal ant-menu-root">
-                            <NavLink to='/search' activeClassName="ant-menu-item-selected" className="ant-menu-item" onClick={this.dontDoThing}>
-                                <SearchForm />
+                            <NavLink to='/search' activeClassName="ant-menu-item-selected" className="ant-menu-item">
+                                <Icon type="search" style={{fontSize: 1.5 + 'em'}} />
+                                {/*<SearchForm />*/}
                             </NavLink>
                             <NavLink to='/cart' activeClassName="ant-menu-item-selected" className="ant-menu-item">
                                 <Icon type="shopping-cart" style={{fontSize: 1.5 + 'em'}}/>

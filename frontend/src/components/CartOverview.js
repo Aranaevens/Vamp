@@ -14,7 +14,9 @@ class CartOverview extends React.Component {
 
     componentDidMount() {
         const cart = JSON.parse(sessionStorage.getItem('cart'));
+        console.log(cart)
         const len = cart.length;
+        console.log(len)
         if (len > 0) {
             this.setState({
                 empty: false,
@@ -22,6 +24,7 @@ class CartOverview extends React.Component {
             const self = this;
             for (let i = 0; i < len; i++) {
                 let id = cart[i];
+                console.log(cart[i])
                 axios.get('/api/book/' + id + '/', {
                     headers:
                         {
@@ -29,11 +32,17 @@ class CartOverview extends React.Component {
                         }
                 })
                     .then(function (response) {
-                        self.state.cart.push(response['data']);
+                        // self.state.cart.push(response['data']);
+                        self.setState({
+                            cart: [
+                                response['data'],
+                                ...self.state.cart
+                            ]
+                        });
                         if (i === len - 1) {
                             self.setState({
                                 loaded: true,
-                                cart: self.state.cart
+                                // cart: self.state.cart
                             })
                         }
                     })
